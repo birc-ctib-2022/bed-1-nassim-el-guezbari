@@ -39,10 +39,8 @@ def main() -> None:
 
     # With all the options handled, we just need to do the real work
 
-    fileRead = args.infile.read()
-    parsedLines = parser(fileRead)
-    for i in parsedLines:
-        print_line(i, args.outfile)
+    for line in args.infile:
+        print_line(parse_line(line), args.outfile)
 
 if __name__ == '__main__':
     main()
