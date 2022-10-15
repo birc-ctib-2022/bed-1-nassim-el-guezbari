@@ -48,8 +48,5 @@ def main() -> None:
             if int(query_start) <= int(chrom_start) and int(query_end)>= int(chrom_end):     
                 print_line(line, args.outfile)
 
-
- 
-
 if __name__ == '__main__':
     main()
