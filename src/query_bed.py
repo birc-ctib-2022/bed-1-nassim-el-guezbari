@@ -46,6 +46,5 @@ def main() -> None:
         if int(query_start) <= int(start) and int(query_end) >= int(end):
             print_line(line,args.outfile)
 
-
 if __name__ == '__main__':
     main()
