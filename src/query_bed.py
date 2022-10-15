@@ -28,10 +28,10 @@ def main() -> None:
 
     # With all the options handled, we just need to do the real work
 
-    Parsed_BED = Table()
-    for line in args.bed:
-        parsed_line=parse_line(line)
-        Parsed_BED.add_line(parse_line)
+    Parsed_BED = Table() #make an empty table
+    for line in args.bed: #for every line in the bed input file
+        parsed_line=parse_line(line) #parse line
+        Parsed_BED.add_line(parsed_line) # add it to table 
 
     for line in args.query:
         query=parsed_line[0]
