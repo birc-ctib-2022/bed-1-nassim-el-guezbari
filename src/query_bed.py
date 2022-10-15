@@ -28,33 +28,33 @@ def main() -> None:
 
     # With all the options handled, we just need to do the real work
 
-    Parsed_BED = Table() 
+    table = Table() 
     for line in args.bed: 
-        parsed_line=parse_line(line) 
-        Parsed_BED.add_line(parsed_line) 
+        new_line=parse_line(line) 
+        table.add_line(new_line) 
 
-    for line in args.query:  
-        tab_seperation= line.split("\t")
+    for index_query in args.query:  
+        query_setup= index_query.split("\t")
         
-        query=parsed_line[0]
+        query_chrom=query_setup[0]
         
-        query_start=parsed_line[1]
+        query_chrom_start=query_setup[1]
         
-        query_end=parsed_line[2]
+        query_chrom_end=query_setup[2]
         
-        full_chrom=Parsed_BED.get_chrom(query)
+        chromosome_list=table.get_chrom(query_chrom)
         
-    for line in full_chrom:
+    for index_bed in chromosome_list:
      
-        chrom=line[0]
+        bed_chrom=line[0]
         
-        start=line[1]
+        bed_chrom_start=line[1]
         
-        end=line[2]
+        bed_chrom_end=line[2]
         
-        if int(query_start) <= int(start) and int(query_end) >= int(end):
+        if int(query_chrom_start) <= int(bed_chrom_start) and int(query_chrom_end) >= int(bed_chrom_end):
         
-            print_line(line, args.outfile)
+            print_line(index_bed, args.outfile)
 
 if __name__ == '__main__':
     main()
