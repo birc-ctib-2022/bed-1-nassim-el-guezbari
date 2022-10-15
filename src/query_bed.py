@@ -43,7 +43,8 @@ def main() -> None:
         chrom=line[0]
         start=line[1]
         end=line[2]
-        if int(query_start) <= int(start) and int(query_end) >= int(end)
+        if int(query_start) <= int(start) and int(query_end) >= int(end):
+            print_line(line,args.outfile)
 
 
 if __name__ == '__main__':
