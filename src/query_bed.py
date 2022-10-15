@@ -27,23 +27,26 @@ def main() -> None:
     args = argparser.parse_args()
 
     # With all the options handled, we just need to do the real work
-    table = Table()
+    
+    Parsed_bed = Table()
 
     for line in args.bed:
-        new_line= parse_line(line)
-        table.add_line(new_line)
-    for index_query in args.query:
-        query_setup = index_query.split("\t")
-        query_chrom = query_setup [0]
-        query_chrom_start = query_setup [1] 
-        query_chrom_end = query_setup [2]
-        chromosome_list= table.get_chrom(query_chrom) 
-        for index_bed in chromosome_list: 
-            bed_chrom = index_bed[0]
-            bed_chrom_start = index_bed[1]
-            bed_chrom_end = index_bed[2]
-            if int(query_chrom_start) <= int(bed_chrom_start) and int(query_chrom_end)>= int(bed_chrom_end):     
-                print_line(index_bed, args.outfile)
+        Parsed_line= parse_line(line)
+        Parsed_bed.add_line(Parsed_line)
+
+    for line in args.query:
+        query = line.split("\t")
+        query_chrom = query [0]
+        query_start = query [1] 
+        query_end = query [2]
+        full_chrom= Parsed_bed.get_chrom(query_chrom) 
+
+        for line in full_chrom: 
+            chrom = line[0]
+            chrom_start = line[1]
+            chrom_end = line[2]
+            if int(query_start) <= int(chrom_start) and int(query_end)>= int(chrom_end):     
+                print_line(line, args.outfile)
 
 
  
