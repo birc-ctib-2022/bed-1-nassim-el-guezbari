@@ -28,13 +28,14 @@ def main() -> None:
 
     # With all the options handled, we just need to do the real work
 
-    Parsed_BED = Table() #make an empty table
-    for line in args.bed: #for every line in the bed input file
-        parsed_line=parse_line(line) #parse line
-        Parsed_BED.add_line(parsed_line) # add it to table 
+    Parsed_BED = Table()
+    for line in args.bed:
+        parsed_line=parse_line(line)
+        Parsed_BED.add_line(parsed_line)
 
     for line in args.query:
-        query=parsed_line[0]
+        tab_seperation= line.split("\t")
+        query=parsed_line[0] 
         query_start=parsed_line[1]
         query_end=parsed_line[2]
         full_chrom=Parsed_BED.get_chrom(query)
