@@ -28,24 +28,33 @@ def main() -> None:
 
     # With all the options handled, we just need to do the real work
 
-    Parsed_BED = Table()
-    for line in args.bed:
-        parsed_line=parse_line(line)
-        Parsed_BED.add_line(parsed_line)
+    Parsed_BED = Table() 
+    for line in args.bed: 
+        parsed_line=parse_line(line) 
+        Parsed_BED.add_line(parsed_line) 
 
-    for line in args.query:
+    for line in args.query:  
         tab_seperation= line.split("\t")
-        query=parsed_line[0] 
+        
+        query=parsed_line[0]
+        
         query_start=parsed_line[1]
+        
         query_end=parsed_line[2]
+        
         full_chrom=Parsed_BED.get_chrom(query)
-
+        
     for line in full_chrom:
+     
         chrom=line[0]
+        
         start=line[1]
+        
         end=line[2]
+        
         if int(query_start) <= int(start) and int(query_end) >= int(end):
-            print_line(line,args.outfile)
+        
+            print_line(line, args.outfile)
 
 if __name__ == '__main__':
     main()
