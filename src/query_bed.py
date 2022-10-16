@@ -41,7 +41,10 @@ def main() -> None:
         query_end = query [2]
         full_chrom= Parsed_bed.get_chrom(query_chrom) 
 
-        for chrom, chrom_start, chrom_end in full_chrom: 
+        for line in full_chrom: 
+            chrom = line[0]
+            chrom_start = line[1]
+            chrom_end = line[2]
             if int(query_start) <= int(chrom_start) and int(query_end)>= int(chrom_end):     
                 print_line(line, args.outfile)
 
