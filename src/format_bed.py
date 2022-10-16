@@ -8,7 +8,6 @@ from bed import (
     parse_line, print_line
 )
 
-
 def main() -> None:
     """Run the program."""
     # Setting up the option parsing using the argparse module
@@ -28,8 +27,9 @@ def main() -> None:
     args = argparser.parse_args()
 
     # With all the options handled, we just need to do the real work
-    # FIXME: put your code here
 
+    for line in args.infile:
+        print_line(parse_line(line), args.outfile)
 
 if __name__ == '__main__':
     main()

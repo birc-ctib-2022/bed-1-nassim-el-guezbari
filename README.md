@@ -66,8 +66,29 @@ When you have implemented the tool, answer the questions below, commit it to Git
 
 How does your method for extracting features work?
 
+Firstly I make sure the format is "ideal" bed with tabs seperating the 4 couloums. Accomplishing this i use
+    parse_line function, in a for loop over the input file, to parse each line of the bedfile.
+Then I define every value into their position (abusing the fact that we are working with input no larger than 3).
+    This is done through naming every position making them alle easily accesible for searching through.
+Afterwards every line that is on the chromosome of interest is added to a list, basicly creating a subset of the
+    input file. This is accomplished through the "get_chrom" command.
+Lastly I run through this list checking if a line fits in the designated area, the user has searched for.
+    If the start and end is found within that searched area it gets printed directly to the output.file.
+    This one is accomplished through a for loop, of every line/entry in the list that was made in the earlier step.
+    Then checking if the start and end positions are within the seared interval by an if statement at the end of the loop.
+
 What is the complexity of the algorithm, as a function of the size of the two input files? When you answer this, you need to know that you can get the list of chromosomse from a `query.Table` in constant time, but it does, of course, take longer to run through all the lines in it.
+
+The algorithm takes in two input files firstly the lenght of the query and then the BED file. So for the complexity
+    can we define OqB (not sure if they have some standardized symbols) q being the length of the query and B is the length of the whole BED file.
 
 Did you, at any point, exploit that our features are on single nucleotides and not larger regions?
 
+Yes as mention a couple times above, this code would for the most part be unusable for any other sizes than 3.
+    Though that mostly in the query_bed where that is abused in 2 seperate loops.
+Though i also think only "upgrading" those two loops is all thats needed to allow for broader regions. 
+
 If you did, what would it take to handle general regions?
+
+I would have to define what the algorithm would have to do when features are partily out of a query. And fix
+    how it atm actually does not check for features that are partily inside querys just does contained in it.

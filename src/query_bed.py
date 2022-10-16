@@ -27,8 +27,26 @@ def main() -> None:
     args = argparser.parse_args()
 
     # With all the options handled, we just need to do the real work
-    # FIXME: put your code here
+    
+    Parsed_bed = Table()
 
+    for line in args.bed:
+        Parsed_line= parse_line(line)
+        Parsed_bed.add_line(Parsed_line)
+
+    for line in args.query:
+        query = line.split("\t")
+        query_chrom = query [0]
+        query_start = query [1] 
+        query_end = query [2]
+        full_chrom= Parsed_bed.get_chrom(query_chrom) 
+
+        for line in full_chrom: 
+            chrom = line[0]
+            chrom_start = line[1]
+            chrom_end = line[2]
+            if int(query_start) <= int(chrom_start) and int(query_end)>= int(chrom_end):     
+                print_line(line, args.outfile)
 
 if __name__ == '__main__':
     main()
