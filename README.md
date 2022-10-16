@@ -79,9 +79,8 @@ Lastly I run through this list checking if a line fits in the designated area, t
 
 What is the complexity of the algorithm, as a function of the size of the two input files? When you answer this, you need to know that you can get the list of chromosomse from a `query.Table` in constant time, but it does, of course, take longer to run through all the lines in it.
 
-Not-complex? I have avoided any heavy processing by making the code only function for reagion no larger nor smaller than 3.
-    So for the most part i would assume its constant in that i am rather specific with telling it to look at position X, rather
-    than searching for something more general making sure to avoide pitfalls like overlaps.
+The algorithm takes in two input files firstly the lenght of the query and then the BED file. So for the complexity
+    can we define OqB (not sure if they have some standardized symbols) q being the length of the query and B is the length of the whole BED file.
 
 Did you, at any point, exploit that our features are on single nucleotides and not larger regions?
 
@@ -91,6 +90,5 @@ Though i also think only "upgrading" those two loops is all thats needed to allo
 
 If you did, what would it take to handle general regions?
 
-I am thinking that instead of using positions [0],[1] and [2] i would be able to replave these by the user input.
-    So something along the lines of [0],[chrom_start] and [chrom_end]. Then we just need to account for overlapping
-    which i think can be done through a while loop, to check if any one line matched something from any other line.
+I would have to define what the algorithm would have to do when features are partily out of a query. And fix
+    how it atm actually does not check for features that are partily inside querys just does contained in it.

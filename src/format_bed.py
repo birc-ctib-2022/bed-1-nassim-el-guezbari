@@ -8,17 +8,6 @@ from bed import (
     parse_line, print_line
 )
 
-def parser(inputFile):
-    outLines = []
-    lineBegin, lineEnd = 0, 0
-    for i, c in enumerate(inputFile):
-        if c == "\n":
-            lineEnd = i
-            outLines.append(parse_line(inputFile[lineBegin:lineEnd]))
-            lineBegin = i + 1
-    return outLines
-
-
 def main() -> None:
     """Run the program."""
     # Setting up the option parsing using the argparse module
